@@ -7,7 +7,7 @@ def main():
     lines = "".join([line.strip() for line in sys.stdin])
 
     #a regular expression that captures every instance of mul() with two 1-3 digit numbers as arguments
-    valid_exp = r"(mul\(\d{1,3}\s*,\s*\d{1,3}\)|don\'t\(\)|do\(\))"
+    valid_exp = r"(mul\((\d{1,3})\s*,\s*(\d{1,3}\))|don\'t\(\)|do\(\))"
 
     #a regular expression that extracts the two numeric arguments to mul()
     mul_exp = r"mul\(\s*(\d{1,3})\s*,\s*(\d{1,3})"
@@ -22,7 +22,7 @@ def main():
     mul = True
     sum = 0
     for exp in expressions:
-        print(exp[0])
+        print(exp)
         if exp[0] == "don't()":
             mul = False
         elif exp[0] == "do()":
@@ -34,7 +34,7 @@ def main():
             sum+= int(match.group(1)) * int(match.group(2))
 
 
-    print(expressions)
+    #print(expressions)
     print(sum)
 
 if __name__ == "__main__":
