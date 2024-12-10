@@ -50,18 +50,24 @@ def main():
             infiles = True
     
     i = len(blockRep)-1
-    PrintBlockGroup(blockRep)
+    #PrintBlockGroup(blockRep)
     while i > 0:
         if blockRep[i].isFile:
-            for j in range(len(blockRep)):
+            reloc = False
+            for j in range(i):
                 if not blockRep[j].isFile:
-                    if blockRep[i].size <= blockRep[j].size and j < i:
+                    if blockRep[i].size <= blockRep[j].size:
                         blockRep[j].size -= blockRep[i].size
                         b = blockRep.pop(i)
                         blockRep.insert(j,b)
                         blockRep.insert(i, BlockGroup(False, b.size, -1))
+                        #print(f"relocated block {i} to {j}")
+                        reloc = True
                         break
             #PrintBlockGroup(blockRep)
+        
+        #if not reloc:
+        #    print(f"unabled to relocate block {i}")
         i -= 1
     print("defragged")
 
