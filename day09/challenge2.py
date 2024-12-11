@@ -65,11 +65,11 @@ def main():
                         reloc = True
                         break
             #PrintBlockGroup(blockRep)
-        
         #if not reloc:
         #    print(f"unabled to relocate block {i}")
         i -= 1
     print("defragged")
+    PrintBlockGroup(blockRep)
 
     print(scoreBlockGroup(blockRep))
 
